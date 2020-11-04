@@ -4,7 +4,7 @@ import artistQuestionProp from "./artist-question.prop";
 
 const ArtistQuestionScreen = (props) => {
 
-  const {onAnswer, question, renderPlayer} = props;
+  const {onAnswer, question, renderPlayer, children} = props;
   const {
     answers,
     song,
@@ -30,11 +30,7 @@ const ArtistQuestionScreen = (props) => {
           <circle className="timer__line" cx="390" cy="390" r="370" />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        {children}
       </header>
 
       <section className="game__screen">
@@ -75,6 +71,7 @@ ArtistQuestionScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   question: artistQuestionProp,
   renderPlayer: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default ArtistQuestionScreen;
