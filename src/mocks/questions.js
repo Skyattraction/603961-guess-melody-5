@@ -1,4 +1,5 @@
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
+const AVATAR_URL_START = `https://avatars.dicebear.com/api/human`;
+const AVATAR_URL_END = `.svg?w=128&h=128`;
 
 export default [
   {
@@ -24,13 +25,13 @@ export default [
       src: `https://upload.wikimedia.org/wikipedia/commons/b/b8/Alexander_Nakarada_-_Catalyst_%28cc-by%29_%28filmmusic%29.mp3`,
     },
     answers: [{
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `${AVATAR_URL_START}/${Math.random()}${AVATAR_URL_END}`,
       artist: `Jim Bim`,
     }, {
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `${AVATAR_URL_START}/${Math.random()}${AVATAR_URL_END}`,
       artist: `Jack Black`,
     }, {
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `${AVATAR_URL_START}/${Math.random()}${AVATAR_URL_END}`,
       artist: `Alexander Nakarada`,
     }],
   }
