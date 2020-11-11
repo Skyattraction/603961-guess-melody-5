@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 import {GameType, MAX_MISTAKES_COUNT} from '../../const';
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {incrementStep, incrementMistake, resetGame} from "../../store/action";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
 import artistQuestionProp from "../artist-question-screen/artist-question.prop";
@@ -65,19 +65,19 @@ GameScreen.propTypes = {
   mistakes: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  step: state.step,
-  mistakes: state.mistakes,
-  questions: state.questions,
+const mapStateToProps = ({GAME, DATA}) => ({
+  step: GAME.step,
+  mistakes: GAME.mistakes,
+  questions: DATA.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   },
   onUserAnswer(question, answer) {
-    dispatch(ActionCreator.incrementStep());
-    dispatch(ActionCreator.incrementMistake(question, answer));
+    dispatch(incrementStep());
+    dispatch(incrementMistake(question, answer));
   },
 });
 

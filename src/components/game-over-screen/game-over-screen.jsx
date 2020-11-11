@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {resetGame} from "../../store/action";
 
-const GameOverScreen = ({onReplayButtonClick, resetGame}) => {
+const GameOverScreen = ({onReplayButtonClick, resetGameAction}) => {
 
   return (
     <section className="result">
@@ -16,7 +16,7 @@ const GameOverScreen = ({onReplayButtonClick, resetGame}) => {
         className="replay"
         type="button"
         onClick={() => {
-          resetGame();
+          resetGameAction();
           onReplayButtonClick();
         }}
       >
@@ -28,12 +28,12 @@ const GameOverScreen = ({onReplayButtonClick, resetGame}) => {
 
 GameOverScreen.propTypes = {
   onReplayButtonClick: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
+  resetGameAction: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   },
 });
 
