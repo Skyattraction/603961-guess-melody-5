@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
-import {GameType, MAX_MISTAKES_COUNT} from '../../const';
+import {GameType, MAX_MISTAKES_COUNT, AppRoute} from '../../const';
 import {connect} from "react-redux";
 import {incrementStep, incrementMistake, resetGame} from "../../store/action";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
@@ -23,13 +23,13 @@ const GameScreen = (props) => {
 
   if (mistakes >= MAX_MISTAKES_COUNT) {
     return (
-      <Redirect to="/lose" />
+      <Redirect to={AppRoute.LOSE} />
     );
   }
 
   if (step >= questions.length || !question) {
     return (
-      <Redirect to="/result" />
+      <Redirect to={AppRoute.RESULT} />
     );
   }
 
@@ -37,6 +37,7 @@ const GameScreen = (props) => {
     case GameType.ARTIST:
       return (
         <ArtistQuestionScreenWrapped
+          key={step}
           question={question}
           onAnswer={onUserAnswer}
         >
@@ -46,6 +47,7 @@ const GameScreen = (props) => {
     case GameType.GENRE:
       return (
         <GenreQuestionScreenWrapped
+          key={step}
           question={question}
           onAnswer={onUserAnswer}
         >
@@ -53,7 +55,7 @@ const GameScreen = (props) => {
         </GenreQuestionScreenWrapped>
       );
   }
-  return <Redirect to="/" />;
+  return <Redirect to={AppRoute.ROOT} />;
 };
 
 GameScreen.propTypes = {
